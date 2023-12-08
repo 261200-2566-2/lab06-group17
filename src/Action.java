@@ -1,5 +1,6 @@
 /**
  * The Action class contains nested classes representing actions related to character combat.
+ * give hp is health points 
  */
 class Action {
     private static boolean isDefend = false;
@@ -18,6 +19,12 @@ class Action {
          * Method to perform defense during an attack.
          *
          * @return Whether the defense action was successful.
+         *
+         * Preconditions:
+         * - None
+         *
+         * Postconditions:
+         * - The isDefend flag is set to true, indicating successful defense.
          */
         public boolean defendAttack() {
             return isDefend = true;
@@ -46,6 +53,12 @@ class Action {
          * Method to calculate and apply damage during an attack.
          *
          * @param damage The amount of damage to be inflicted.
+         * Preconditions:
+         * - None
+         *
+         * Postconditions:
+         * - The defender's health points are updated based on the damage.
+         * - The defender's shield and hp are adjusted accordingly.
          */
         public void takeDamage(int damage) {
             hp = hp - damage;
@@ -72,6 +85,12 @@ class Action {
 
         /**
          * Method to execute an attack and apply damage to the defender.
+         *
+         * Preconditions:
+         * - None
+         *
+         * Postconditions:
+         * - The defender's health points are reduced based on the damage.
          */
         public void executeAttack() {
             takeDamage(damage);
