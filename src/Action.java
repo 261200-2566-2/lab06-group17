@@ -1,22 +1,39 @@
+/**
+ * The Action class contains nested classes representing actions related to character combat.
+ */
 class Action {
     private static boolean isDefend = false;
-    static class Defend{
+
+    /**
+     * The Defend class represents defending actions taken by characters.
+     */
+    static class Defend {
         Character defender;
-        public Defend(Character defender){
+
+        public Defend(Character defender) {
             this.defender = defender;
         }
 
-        public boolean defendAttack(){
+        /**
+         * Method to perform defense during an attack.
+         *
+         * @return Whether the defense action was successful.
+         */
+        public boolean defendAttack() {
             return isDefend = true;
         }
     }
+
+    /**
+     * The Attack class represents actions related to character attacks.
+     */
     static class Attack {
         Character attacker;
         Character defender;
         int damage;
         int shield;
         int hp;
-        
+
         public Attack(Character attacker, Character defender) {
             this.attacker = attacker;
             this.defender = defender;
@@ -24,31 +41,38 @@ class Action {
             this.hp = defender.getHp();
             this.shield = defender.getShield();
         }
-        
-        public void takeDamage(int damage){
+
+        /**
+         * Method to calculate and apply damage during an attack.
+         *
+         * @param damage The amount of damage to be inflicted.
+         */
+        public void takeDamage(int damage) {
             hp = hp - damage;
-            if(isDefend){
-                if(shield - damage <= 0){
+            if (isDefend) {
+                if (shield - damage <= 0) {
                     hp = hp + shield;
                     defender.setHp(hp);
                     defender.setShield(0);
-                    if(hp <= 0){
+                    if (hp <= 0) {
                         defender.setHp(0);
                     }
-                }else{
+                } else {
                     shield = shield - damage;
                     defender.setShield(shield);
                 }
-            }else{
-                if(hp <= 0){
+            } else {
+                if (hp <= 0) {
                     defender.setHp(0);
-                }else{
+                } else {
                     defender.setHp(hp);
                 }
             }
-            
         }
 
+        /**
+         * Method to execute an attack and apply damage to the defender.
+         */
         public void executeAttack() {
             takeDamage(damage);
         }
